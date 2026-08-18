@@ -30,7 +30,7 @@ jobs:
     needs: check-changed-files
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: c++ examples
       working-directory: ./examples/c++
       if: needs.check-changed-files.outputs.cpp_cuda == 'true'

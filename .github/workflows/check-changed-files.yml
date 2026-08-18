@@ -23,7 +23,7 @@ jobs:
       cpp_cuda: ${{ steps.changed_files.outputs.cpp_cuda }}
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: Get all changed files
       id: changed-files-yaml
       uses: tj-actions/changed-files@v39

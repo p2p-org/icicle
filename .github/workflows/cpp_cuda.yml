@@ -24,7 +24,7 @@ jobs:
     needs: check-changed-files
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: Check clang-format
       if: needs.check-changed-files.outputs.cpp_cuda == 'true'
       run: if [[ $(find ./ \( -path ./icicle/build -prune -o -path ./**/target -prune -o -path ./examples -prune \) -iname *.h -or -iname *.cuh -or -iname *.cu -or -iname *.c -or -iname *.cpp | xargs clang-format --dry-run -ferror-limit=1 -style=file 2>&1) ]]; then echo "Please run clang-format"; exit 1; fi
@@ -38,7 +38,7 @@ jobs:
         curve: [bn254, bls12_381, bls12_377, bw6_761]
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: Build curve
       working-directory: ./icicle
       if: needs.check-changed-files.outputs.cpp_cuda == 'true'
@@ -60,7 +60,7 @@ jobs:
         field: [babybear]
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: Build field
       working-directory: ./icicle
       if: needs.check-changed-files.outputs.cpp_cuda == 'true'
