@@ -24,9 +24,9 @@ jobs:
     needs: check-changed-files
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: Setup go
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
       with:
         go-version: '1.20.0'
     - name: Check gofmt
@@ -52,9 +52,9 @@ jobs:
             build_args:
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: Setup go
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
       with:
         go-version: '1.20.0'
     - name: Build
@@ -62,7 +62,7 @@ jobs:
       if: needs.check-changed-files.outputs.golang == 'true' || needs.check-changed-files.outputs.cpp_cuda == 'true'
       run: ./build.sh -curve=${{ matrix.curve.name }} ${{ matrix.curve.build_args }} # builds a single curve with G2 and ECNTT enabled
     - name: Upload ICICLE lib artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
       if: needs.check-changed-files.outputs.golang == 'true' || needs.check-changed-files.outputs.cpp_cuda == 'true'
       with:
         name: icicle-builds-${{ matrix.curve.name }}-${{ github.workflow }}-${{ github.sha }}
@@ -82,9 +82,9 @@ jobs:
             build_args: -field-ext
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: Setup go
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
       with:
         go-version: '1.20.0'
     - name: Build
@@ -92,7 +92,7 @@ jobs:
       if: needs.check-changed-files.outputs.golang == 'true' || needs.check-changed-files.outputs.cpp_cuda == 'true'
       run: ./build.sh -field=${{ matrix.field.name }} ${{ matrix.field.build_args }} # builds a single field with field-ext enabled
     - name: Upload ICICLE lib artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
       if: needs.check-changed-files.outputs.golang == 'true' || needs.check-changed-files.outputs.cpp_cuda == 'true'
       with:
         name: icicle-builds-${{ matrix.field.name }}-${{ github.workflow }}-${{ github.sha }}
@@ -106,13 +106,13 @@ jobs:
     needs: [check-changed-files, build-curves-linux, build-fields-linux]
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: Setup go
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
       with:
         go-version: '1.20.0'
     - name: Download ICICLE lib artifacts
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
       if: needs.check-changed-files.outputs.golang == 'true' || needs.check-changed-files.outputs.cpp_cuda == 'true'
       with:
         path: ./icicle/build/lib
