@@ -14,6 +14,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  pull-requests: read # read pull requests, reusable ./.github/workflows/check-changed-files.yml
+
 jobs:
   check-changed-files:
     uses: ./.github/workflows/check-changed-files.yml
